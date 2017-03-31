@@ -1,0 +1,58 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "favorList": [
+    {
+      "name": "Johncena",
+      "favor": "Mongo Mille crepe",
+      "id": 1
+    },
+    {
+      "name": "Terrence",
+      "favor": "",
+      "id": 2
+    },
+    {
+      "name": "Terrence7",
+      "favor": "Dark chocolate Cake",
+      "id": 3
+    },
+    {
+      "name": "Joneeeee",
+      "favor": "Mongo Mille crepe",
+      "id": 4
+    },
+    {
+      "name": "Terrence55699",
+      "favor": "",
+      "id": 5
+    },
+    {
+      "name": "myisman2",
+      "favor": "",
+      "id": 6
+    }
+  ],
+  "friends": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "goldenshit": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "profile": {
+    "name": "typicode"
+  }
+}
