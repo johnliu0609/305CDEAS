@@ -1,0 +1,244 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Login</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a href="index.html" id="logo">Dessert <em>Cabin</em></a></h1>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+							  <li><a href="index.html">Home</a></li>
+
+							  <!--<li><a href="left-sidebar.html">booking</a></li>-->
+								<li><a href="special.html">Special Dessert</a></li>
+								<li><a href="information.html">About as</a></li>
+								<li><a href="map.html">Location</a></li>
+								<li class="current"><a href="login.html">Login</a></li>						
+
+							</ul>
+						</nav>
+
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+
+						<div id="content">
+
+							<!-- Content -->
+							Member ID:<input type = "text" id = "memberId" name = "id">
+							<br>Password:<input type = "password" id = "memberPw" name = "pw">
+							<br>
+							<input type = "submit" id = "memberLogin" value = "Login">
+							<input type = "button" id = "memberRegister" value = "Register">
+
+						</div>
+						
+						<div id="content2">
+							<input type = "submit" id = "memberLogout" value = "LogOut">
+						</div>
+						
+						<div id="content3">
+							Already register:
+						</div>	
+						
+					</div>
+				</section>
+
+			<!-- Footer -->
+
+
+					<!-- Icons -->
+
+
+					<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: John Liu</li>
+							</ul>
+						</div>
+
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+			<script src="/socket.io/socket.io.js"></script>
+			<script>
+var socket = io();
+
+    socket.on("login_successful", function(data) {
+		logOut();
+	});
+
+	
+
+	
+	
+	
+	
+
+	$(function() {
+		$("#memberLogin").click(function(e) {
+			// A function for redirecting to login page
+			$(function() {
+				var user = {};
+				user.username = $("#memberId").val();
+				user.password = $("#memberPw").val();
+				if (user.username == "" || user.password == "") {
+					alert("You must enter all information. ");
+				} else {
+				
+			
+					$.ajax( {
+						url: "http://localhost:5000/login.html",
+						type: "POST",
+						data: user
+					});
+					alert("Login Successful");
+					window.location.reload(true);
+				}
+				return false;
+			});
+		});
+	});
+	
+
+
+
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	$(function() {
+		$("#memberRegister").click(function(e) {
+			// A function for redirecting to login page
+			$(function() {
+				var user = {};
+				user.username = $("#memberId").val();
+				user.password = $("#memberPw").val();
+				user.signup = "signup";
+				if (user.username == "" || user.password == "") {
+					alert("You must enter all information. ");
+				} else {
+				
+				
+				
+				
+				
+						$.ajax({
+						type: 'Post',
+						url: "http://localhost:3000/favorList",
+						data: {name: user.username,password :user.password , "favor":[""]},traditional: true,
+						success: function(data){
+						alert(data.name   + " in " + "localhost:3000/favorList");
+						//window.location.reload(true);
+							}
+					});
+				
+				
+				
+					$.ajax( {
+						url: "http://localhost:5000/login.html",
+						type: "POST",
+						data: user
+					});
+					
+					
+					alert("Register Successful");
+					window.location.reload(true);
+					return false;
+				
+				}
+		
+			});
+		});
+	});
+	
+	$(function() {
+		$("#memberLogout").click(function(e) {
+
+			// A function for redirecting to login page
+			$(function() {
+				var user = {};
+				logOut();
+				user.signup = "logout";
+				
+					$.ajax( {
+						url: "http://localhost:5000/login.html",
+						type: "POST",
+						data: user
+					});
+					window.location.reload(true);
+					return false;
+			
+		
+			});
+		});
+	});
+	
+	
+	$(document).ready(function(){
+		var noLogin= document.getElementById('content');
+			noLogin.style.display = "block";
+			
+		var noLogin= document.getElementById('content2');
+			noLogin.style.display = "none";
+
+		var noLogin2= document.getElementById('content3');
+			noLogin2.style.display = "none";
+	});
+	
+	
+	
+	function logOut(){
+
+
+		var noLogin= document.getElementById('content');
+			noLogin.style.display = "none";
+			
+		var noLogin= document.getElementById('content2');
+			noLogin.style.display = "block";
+
+		var noLogin2= document.getElementById('content3');
+			noLogin2.style.display = "none";
+}
+
+	
+	
+	
+</script>
+
+	</body>
+</html>

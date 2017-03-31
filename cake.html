@@ -1,0 +1,235 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Cake</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a href="index.html" id="logo">Dessert <em>Cabin</em></a></h1>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li><a href="index.html">Home</a></li>
+								<!--<a href="left-sidebar.html">booking</a></li>-->
+								<li class="current"><a href="special.html">Special Dessert</a></li>
+								<li><a href="information.html">About us</a></li>
+								<li><a href="map.html">Location</a></li>
+								<li><a href="login.html">Login</a></li>
+
+							</ul>
+						</nav>
+
+				</div>
+
+			<!-- Main -->
+				<section class="wrapper style1">
+					<div class="container">
+						<div class="row 200%">
+							<div class="4u 12u(narrower)">
+								<div id="sidebar">
+
+									<!-- Sidebar -->
+
+										<section>		
+			
+											<p><a href="cake.html" class="button">Cake</a></p> 
+
+										</section>
+
+										<section>
+
+											<p><a href="iceCream.html" class="button">API</a></p>
+
+										</section>
+
+								</div>
+							</div>
+							<div class="8u  12u(narrower) important(narrower)">
+								<div id="content">
+
+									<!-- Content -->
+
+										<article>
+											<header>
+												<h2>Cake</h2>
+											</header>
+<form action="/action_page.php" method="get">
+											<h4>Cranberry Cake</h4>
+											<br><img src = "images/cake2.jpg" height = "200" width = "400"><br>
+<input type="Button" onclick="carnberry()" id="Cranberry Cake" name="vehicle" value="Double Click me to add me to favorite list"><br>
+											<p><h4>Dark chocolate Cake</h4></p>
+											<img src = "images/cake3.jpg" height = "200" width = "400"><br>
+<input type="Button" onclick="carnberry2()" name="vehicle" value="Double Click me to add me to favorite list"><br>
+											<p><h4>Mongo Mille crepe</h4></p>
+											<img src = "images/cake4.jpg" height = "200" width = "400"><br>
+<input type="Button" onclick="carnberry3()" name="vehicle" value="Double Click me to add me to favorite list"><br><br><br><br>
+
+
+
+
+															
+</form>			
+										</article>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+			<!-- Footer -->
+
+
+					<!-- Icons -->
+
+
+					<!-- Copyright -->
+
+
+				</div>
+
+		</div>
+<script src="/socket.io/socket.io.js"></script>
+		<!-- Scripts -->
+			<script>
+		var socket = io();
+		var sad="";
+		var ids="";
+		var runTime= 0;
+		socket.on("login_successful", function(data) {
+		
+		sad = data.username;
+		
+		
+	});
+	
+	
+			function run() {
+	
+	
+			$.ajax({
+						type: 'Get',
+						url: "http://127.0.0.1:3000/favorList/" ,
+						success: function(data){
+						$.each(data,function(i,data){
+						
+						
+						
+						if(data.name  == sad){
+						ids = data.id;
+		
+						runTime +=1;
+						}
+						
+						});
+						
+						}
+					});
+					
+    console.log( "ready!" );
+};
+		
+
+		
+			function carnberry(){
+				
+if(sad== ""){alert("Please sign in and try it again");}
+
+					run();
+
+
+	     if(runTime>0) {
+			alert("Done!");
+			
+			$.ajax({
+						type: 'Put',
+						url: "http://127.0.0.1:3000/favorList/"+ ids,
+						data: {"name": sad, "favor":["Cranberry Cake"]},traditional: true,
+						success: function(data){
+						alert("Thanks "+sad + " Selected Cranberry Cake" );
+						
+							}
+					});
+	}
+
+			}
+			
+			
+			function carnberry2(){
+						
+
+						if(sad== ""){alert("Please sign in and try it again");}
+					run();
+
+
+	     if(runTime>0) {
+			alert("Done!");
+			
+			$.ajax({
+						type: 'Put',
+						url: "http://127.0.0.1:3000/favorList/"+ ids,
+						data: {"name": sad, "favor":["Dark chocolate Cake"]},traditional: true,
+						success: function(data){
+						alert("Thanks "+sad + " Selected Dark chocolate Cake" );
+							}
+					});
+	}
+
+			}
+			
+			function carnberry3(){
+						
+if(sad== ""){alert("Please sign in and try it again");}
+					run();
+
+	     if(runTime>0) {
+			alert("Done!");
+			
+			$.ajax({
+						type: 'Put',
+						url: "http://127.0.0.1:3000/favorList/"+ ids,
+						data: {"name": sad, "favor":["Mongo Mille crepe"]},traditional: true,
+						success: function(data){
+						alert("Thanks "+sad + " Selected Mongo Mille crepe" );
+						
+							}
+					});
+	}
+
+			}
+			
+			
+			
+			
+
+			 
+			
+			
+			</script>
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

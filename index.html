@@ -1,0 +1,251 @@
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>John Page</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
+		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	</head>
+	<body>
+	
+		<div id="page-wrapper">
+
+			<!-- Header -->
+				<div id="header">
+
+					<!-- Logo -->
+						<h1><a href="index.html" id="logo">Dessert <em>Cabin</em></a></h1>
+
+					<!-- Nav -->
+						<nav id="nav">
+							<ul>
+								<li class="current"><a href="index.html">Home</a></li>
+
+								<!--<li><a href="left-sidebar.html">booking</a></li>-->
+								<li><a href="special.html">Special Dessert</a></li>
+								<li><a href="information.html">About us</a></li>
+								<li><a href="map.html">Location</a></li>
+								<li><a href="login.html">Login</a></li>
+                                <li><a href="favor.html">Favor</a></li>
+							</ul>
+						</nav>
+
+				</div>
+
+			<!-- Banner -->
+
+
+			<!-- Highlights -->
+
+
+			<!-- Gigantic Heading -->
+				<section class="wrapper style2">
+					<div class="container">
+						<header class="major">
+							<h2>Wellcome to Dessert Cabin Website!</h2>
+							<p>There are different introduction about the dessert</p>
+						</header>
+						<h2>The popularity dessert!
+					</div>
+				</section>
+
+				
+				
+											<div  ng-app="myApp" ng-controller="planetController">
+												<h4>All of Favorite list:</p>
+												<li ng-repeat="x in names">
+												{{  "  List["+ $index +"]"}}.{{" User Name :"+ x.name + "'s favourite dessert is :"+ x.favor   }}
+												</li>
+											</div>						
+
+				<input type="Button"  id="clear_button" name="vehicle" value="Please Double Click to Delete  Your favourite"><br>		
+				
+				
+				
+				
+			<!-- Posts -->
+				
+				<section class="wrapper style1">
+					<div class="container">
+						<div class="row">
+							<section class="6u 12u(narrower)">
+								<div class="box post">
+									<a href="#" class="image left"><img src="images/cake1.jpg" alt="" /></a>
+									<div class="inner">
+										<h3>Chocolate Strawberry Cake</h3>
+										<p>This is the new arrive cake, it mixed from the chocolate, strawberry and cream for provide the good taste for all of you!</p>
+									</div>
+								</div>
+							</section>
+							<section class="6u 12u(narrower)">
+								<div class="box post">
+									<a href="#" class="image left"><img src="images/icecream1.jpg" alt="" /></a>
+									<div class="inner">
+										<h3>Strawberry world ice cream</h3>
+										<p>This is the new arrive ice-cream, it has a large amount of strawberry to match for the ice-cream!</p>
+									</div>
+								</div>
+							</section>
+						</div>
+						<div class="row">
+							<section class="6u 12u(narrower)">
+
+							</section>
+						</div>
+					</div>
+				</section>
+
+			<!-- CTA -->
+
+
+			<!-- Footer -->
+				<div id="footer">
+					<div class="container">
+						<div class="row">
+							<section class="3u 6u(narrower) 12u$(mobilep)">
+
+							</section>
+							<section class="6u 12u(narrower)">
+
+							</section>
+						</div>
+					</div>
+
+					<!-- Icons -->
+						<!--<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-github"><span class="label">GitHub</span></a></li>
+							<li><a href="#" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<li><a href="#" class="icon fa-google-plus"><span class="label">Google+</span></a></li>
+						</ul>-->
+
+					<!-- Copyright -->
+						<div class="copyright">
+							<ul class="menu">
+								<li>&copy; Untitled. All rights reserved</li><li>Design: John Liu</li>
+							</ul>
+						</div>
+
+				</div>
+
+		</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.dropotron.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+			
+			<script src="/socket.io/socket.io.js"></script>
+		<!-- Scripts -->
+		<script>
+		
+	var socket = io();
+	var sad="";
+	var ids="";
+	var runTime= 0;
+	
+	
+	
+	var app = angular.module('myApp', []);
+
+	app.controller('planetController', function($scope, $http) {
+    $http.get('http://127.0.0.1:3000/favorList')
+    .success(function(response) {
+	
+	$scope.names = response;
+	$.each(response,function(i,response){
+	
+		
+
+	
+	
+	
+	var  newdata= JSON.stringify(response.name);
+	
+	
+    socket.on("login_successful", function(data) {
+		if(JSON.stringify(response.name) == newdata){
+		//alert(JSON.stringify(response.name));
+		sad = data.username;
+		}
+	});
+	
+	
+});
+
+
+
+
+
+			function run() {
+	
+	
+			$.ajax({
+						type: 'Get',
+						url: "http://127.0.0.1:3000/favorList/" ,
+						success: function(data){
+						$.each(data,function(i,data){
+						
+						
+						
+						if(data.name  == sad){
+						ids = data.id;
+		
+						runTime +=1;
+						}
+						
+						});
+						
+						}
+					});
+					
+    console.log( "ready!" );
+};
+
+
+
+
+	$("#clear_button").click(function(e){
+						
+if(sad==""){alert("Please sign in and try it again");}
+					run();
+
+	     if(runTime>0) {
+			alert("Done!");
+			
+			$.ajax({
+						type: 'Put',
+						url: "http://127.0.0.1:3000/favorList/"+ ids,
+						data: {"name": sad, "favor":[""]},traditional: true,
+						success: function(data){
+						alert("Thanks "+sad + "" );
+						
+							}
+					});
+	}
+
+});
+
+
+
+
+	
+	});
+  });
+  </script>
+
+	</body>
+</html>
